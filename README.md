@@ -1,1 +1,1 @@
-# js_hw
+AQA course by Anatoly Karpovich
