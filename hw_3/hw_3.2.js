@@ -17,13 +17,18 @@ let discriminant1 = b1 ** 2 - 4 * a1 * c1;
 
 if (discriminant1 < 0) {
 	console.log('The Quadratic Equation doesn\'t have any real solutions');
+
 } else if (discriminant1 == 0) {
 	x1 = (-b1 + Math.sqrt(discriminant1)) / (2 * a1);
 	console.log(`Solution for equation #1: x = ${x1}`);
+
 } else if (discriminant1 > 0) {
 	x1 = (-b1 + Math.sqrt(discriminant1)) / (2 * a1);
 	x2 = (-b1 - Math.sqrt(discriminant1)) / (2 * a1);
 	console.log(`Solutions for equation #1: x1 = ${x1}, x2 = ${x2}`);
+
+} else {
+	console.log('Something went wrong');
 }
 
 
@@ -37,11 +42,16 @@ let discriminant2 = b2 ** 2 - 4 * a2 * c2;
 
 if (discriminant2 < 0) {
 	console.log('The Quadratic Equation doesn\'t have any real solutions');
+
 } else if (discriminant2 == 0) {
 	x1 = (-b2 + Math.sqrt(discriminant2)) / (2 * a2);
 	console.log(`Solution for equation #2: x = ${x1}`);
+
 } else if (discriminant2 > 0) {
 	x1 = (-b2 + Math.sqrt(discriminant2)) / (2 * a2);
 	x2 = (-b2 - Math.sqrt(discriminant2)) / (2 * a2);
 	console.log(`Solutions for equation #2: x1 = ${x1}, x2 = ${x2}`);
+	
+} else {
+	console.log('Something went wrong');
 }
