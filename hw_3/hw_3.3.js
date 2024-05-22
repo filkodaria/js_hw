@@ -8,9 +8,8 @@ let n = 9;
 // let n = 1.5;
 // let n = 'a';
 
-let countSum = n + Number(String(n) + n) + Number(String(n) + n + n);
-
 if (Number.isInteger(n) && n >=1 && n <=9) {
+	let countSum = n + Number(String(n) + n) + Number(String(n) + n + n);
 	console.log(countSum);
 } else {
 	console.log('Try again. Enter number from 1 to 9.');
