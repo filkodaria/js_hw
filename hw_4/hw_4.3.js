@@ -4,12 +4,12 @@ Task 3.
 */
 
 let age;
-age = prompt('Enter your age.');
+age = +prompt('Enter your age.');
 
 const age_2 = 18;
 const age_3 = 60;
 
-if (!Number.isInteger(+age) || age < 0 || Boolean(+age) === false) {
+if (age < 0 || !(age)) {
 	alert('Please, enter your real age.');
 } else if (age < age_2) {
 	alert(`You don\'t have access cause your age is ${age}. It\'s less then ${age_2}.`);

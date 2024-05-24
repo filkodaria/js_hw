@@ -34,7 +34,7 @@ switch (true) {
 }
 
 // subtask 2
-if (typeof age != 'number' || isNaN(age)) {
+if (typeof age != 'number') {
 	console.log('Technical work...2');
 } else if (age < age_2) {
 	console.log(`You don\'t have access cause your age is ${age}. It\'s less then ${age_2}.`);
@@ -45,7 +45,7 @@ if (typeof age != 'number' || isNaN(age)) {
 }
 
 // subtask 3
-if (Boolean(+age) === false) {
+if (isNaN(age)) {
 	console.log('Technical work...3');
 } else if (+age < age_2) {
 	console.log(`You don\'t have access cause your age is ${age}. It\'s less then ${age_2}.`);
