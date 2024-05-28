@@ -24,4 +24,6 @@ for (let i = 0; i < initialWord.length; i++) {
 }
 console.log(`The word ${initialWord} contains ${countVowels} vowels and ${initialWord.length - countVowels} consonants.`);
 
+
 // subtask 2
+// ... in progress

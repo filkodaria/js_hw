@@ -28,3 +28,13 @@ for (let i = 0; i < rowAmount; i++) {
 	output += pattern;
 	console.log(output);
 }
+
+// subtask 2 with <repeat()> method
+let rowNumber = 5;
+let template = ':)';
+let count = 1;
+
+do {
+	console.log(template.repeat(count));
+	count++;
+} while (count <= rowNumber);
