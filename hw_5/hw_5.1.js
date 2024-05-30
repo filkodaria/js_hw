@@ -14,14 +14,14 @@ Task 1.
 */
 
 // subtask 1
-let counter = 10;
+const counter = 10;
 for (let i = counter; i >= 0; i--) {
 	console.log(i);
 }
 
 // subtask 2
-let rowAmount = 5;
-let pattern = ':)';
+const rowAmount = 5;
+const pattern = ':)';
 let output = '';
 
 for (let i = 0; i < rowAmount; i++) {
@@ -30,8 +30,8 @@ for (let i = 0; i < rowAmount; i++) {
 }
 
 // subtask 2 with <repeat()> method
-let rowNumber = 5;
-let template = ':)';
+const rowNumber = 5;
+const template = ':)';
 let count = 1;
 
 do {

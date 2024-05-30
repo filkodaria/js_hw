@@ -29,36 +29,48 @@ Task 2.
 */
 
 // subtask 1
-let initialBytes = 1456235400000;
-let divider = 1024;
-let result;
+const bytes =  1456235400000;
+const divider = 1024;
+let counter = 0;
 
-if (initialBytes < 1024) {
-	result = initialBytes;
-	console.log(`You don't need converting. The result is ${result} bytes.`);
+while (true) {
+	if (bytes / divider >= 1) {
+		bytes /= divider;
+		counter++;
+	} else break;
+}
 
-} else if (initialBytes >= 1024 && initialBytes < 1024 * 10**3) {
-	result = (initialBytes / divider).toFixed(1);
-	console.log(`The result is ${result} Kb.`);
-
-} else if (initialBytes >= 1024 * 10**3 && initialBytes < 1024 * 10**6) {
-	result = (initialBytes / divider**2).toFixed(1);
-	console.log(`The result is ${result} Mb.`);
-
-} else if (initialBytes >= 1024 * 10**6 && initialBytes < 1024 * 10**9) {
-	result = (initialBytes / divider**3).toFixed(1);
-	console.log(`The result is ${result} Gb.`);
-
-} else if (initialBytes >= 1024 * 10**9) {
-	result = (initialBytes / divider**4).toFixed(1);
-	console.log(`The result is ${result} Tb.`);
-} 
+switch (counter) {
+	case 0: {
+		console.log(`You don't need converting. The result is ${bytes} bytes.`);
+		break;
+	}
+	case 1: {
+		console.log(`The result is ${bytes.toFixed(1)} Kb.`);
+		break;
+	}
+	case 2: {
+		console.log(`The result is ${bytes.toFixed(1)} Mb.`);
+		break;
+	}
+	case 3: {
+		console.log(`The result is ${bytes.toFixed(1)} Gb.`);
+		break;
+	}
+	case 4: {
+		console.log(`The result is ${bytes.toFixed(1)} Tb.`);
+		break;
+	}
+	default: {
+		console.log(`Please check your value`);
+	}
+}
 
 
 // subtask 2
-let star = '*';
-let space = ' '
-let rowsNum = 5;
+const star = '*';
+const space = ' '
+const rowsNum = 5;
 
 // triangle
 let sumTriang = 1;
@@ -71,38 +83,38 @@ for (let i = 1; i <= rowsNum; i++) {
 
 // rhomb
 let sumRhomb = 1;
-for (let i = 1; i <= rowsNum; i++) {
+for (let i = 1; i < rowsNum; i++) {
 	let rhomb = '';
 	rhomb += space.repeat(rowsNum - i) + star.repeat(sumRhomb);
 	sumRhomb += 2;
 	console.log(rhomb);
 }
-for (let i = rowsNum; i > 1; i--) {
+for (let i = rowsNum; i >= 1; i--) {
 	let rhomb = '';
+	rhomb += space.repeat(rowsNum - i) + star.repeat(sumRhomb);
 	sumRhomb -= 2;
-	rhomb += space.repeat(rowsNum - i + 1) + star.repeat(sumRhomb - 2);
 	console.log(rhomb);
 }
 
 
 // subtask 3
-let initialNumber = 100;
-let firstDivider = 3;
-let secondDivider = 5;
+const initialNumber = 100;
+const firstDivider = 3;
+const secondDivider = 5;
 
 for (let i = 1; i <= initialNumber; i++) {
-	if (i % firstDivider === 0 && i % secondDivider === 0) {
+	if (!(i % firstDivider) && !(i % secondDivider)) {
 		console.log(`The number ${i} is divisible by ${firstDivider} and by ${secondDivider}.`)
-	} else if (i % firstDivider === 0) {
+	} else if (!(i % firstDivider)) {
 		console.log(`The number ${i} is divisible by ${firstDivider}.`)
-	} else if (i % secondDivider === 0) {
+	} else if (!(i % secondDivider)) {
 		console.log(`The number ${i} is divisible by ${secondDivider}.`)
 	}
 }
 
 
 // subtask 4
-let str = 'I am super engineer';
+const str = 'I am super engineer';
 let newStr = '';
 
 for (let i = 0; i < str.length; i++) {
