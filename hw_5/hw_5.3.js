@@ -31,18 +31,21 @@ console.log(`The word \'${initialWord}\' contains ${countVowels} vowels and ${co
 
 
 // subtask 2
-// ... in progress ... still working on it ...
-
-const str = 'aAZzyZ';    // 'bBAazA' for +1 and 'zZYyxY' for -1
+const str = 'aAbZzyZ';    // 'bBcAazA' for +1 and 'zZaYyxY' for -1
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const offset = 1;
 let newString = '';
+let newIndex;
 
 for (let i = 0; i < str.length; i++) {
-	if (alphabet.includes(str[i].toLowerCase())) {
-		let index = alphabet.indexOf(str[i].toLowerCase());
-		let newIndex = index + offset - alphabet.length;
+	let index = alphabet.indexOf(str[i].toLowerCase());
+	if (offset === 1) {
+		newIndex = index + offset - alphabet.length;
+	} else if (offset === -1) {
+		newIndex = index + offset;
+	}
 
+	if (alphabet.includes(str[i].toLowerCase())) {
 		if (str[i].toUpperCase() === str[i]) {
 			newString += alphabet.at(newIndex).toUpperCase();
 		} else {
