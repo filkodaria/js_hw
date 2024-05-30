@@ -29,11 +29,11 @@ Task 2.
 */
 
 // subtask 1
-const bytes =  1456235400000;
+let bytes =  1450_623_540_000_000;
 const divider = 1024;
 let counter = 0;
 
-while (true) {
+while (counter < 4) {
 	if (bytes / divider >= 1) {
 		bytes /= divider;
 		counter++;
@@ -60,9 +60,6 @@ switch (counter) {
 	case 4: {
 		console.log(`The result is ${bytes.toFixed(1)} Tb.`);
 		break;
-	}
-	default: {
-		console.log(`Please check your value`);
 	}
 }
 
