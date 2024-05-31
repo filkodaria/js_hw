@@ -25,4 +25,16 @@ console.log(countSum(292));
 
 
 // subtask 6
-// ... in progress
+function shrinkString(string) {
+	const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+	let result = string.toLowerCase().split('').sort();
+
+	while (result[0] === result[1]) {
+	const index = alphabet.indexOf(result[0]);
+	const indexOfNextAlphabet = index + 1 - alphabet.length;
+	result.splice(0, 2, alphabet.at(indexOfNextAlphabet));
+	}
+
+	return `Shrinked string is \'${result.toString()}\'.`
+}
+console.log(shrinkString('aabcde'));
