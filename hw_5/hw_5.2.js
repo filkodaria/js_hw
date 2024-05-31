@@ -106,6 +106,8 @@ for (let i = 1; i <= initialNumber; i++) {
 		console.log(`The number ${i} is divisible by ${firstDivider}.`)
 	} else if (!(i % secondDivider)) {
 		console.log(`The number ${i} is divisible by ${secondDivider}.`)
+	} else {
+		console.log(`The number ${i} isn't divisible by specified dividers.`)
 	}
 }
 
