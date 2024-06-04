@@ -11,17 +11,22 @@ Task 3.
 
 // subtask 5
 function countSum(num) {
-	const transformedNum = num.toString().split('');
-	let count = 0;
+	if (!(typeof num === 'number')) {
+		return `Something went wrong! Only number type for entered data is valid.`
+	} else {
+		const transformedNum = num.toString().split('');
+		let count = 0;
 
-	for (let el of transformedNum) {
-		count += +el;
+		for (const el of transformedNum) {
+			count += +el;
+		}
+		if (count < 10) {
+			return count;
+		} else return countSum(count);
 	}
-	if (count < 10) {
-		return count;
-	} else return countSum(count);
 }
 console.log(countSum(292));
+console.log(countSum('num'));
 
 
 // subtask 6
@@ -38,3 +43,4 @@ function shrinkString(string) {
 	return `Shrinked string is \'${result.toString()}\'.`
 }
 console.log(shrinkString('aabcde'));
+console.log(shrinkString('baacdzz'));

@@ -11,18 +11,23 @@ Task 1.
 */
 
 function getEmployeeInfo(name) {
-	const employeeNames = ['Hanna', 'Alex', 'Bill', 'Jane', 'Bob'];
-	const employeeSalary = [2000, 3000, 7000, 1000, 3000];
-	const employeeInfo = [];
+	if (!(typeof name === 'string')) {
+		return `Something went wrong! Only string type for entered data is valid.`
+	} else {
+		const employeeNames = ['Hanna', 'Alex', 'Bill', 'Jane', 'Bob'];
+		const employeeSalary = [2000, 3000, 7000, 1000, 3000];
+		const employeeInfo = [];
 
-	for (let i = 0; i <= employeeNames.length; i++) {
-		if (employeeNames[i] === name) {
-			employeeInfo.push(employeeNames[i], employeeSalary[i]);
+		const employeeIndex = employeeNames.indexOf(name);
+		if (employeeIndex === -1) {
+			return null;
+		} else {
+			employeeInfo.push(employeeNames[employeeIndex], employeeSalary[employeeIndex]);
 			return employeeInfo;
 		}
 	}
-	return null;
 }
+console.log(getEmployeeInfo(10));
 console.log(getEmployeeInfo('Bill'));
 console.log(getEmployeeInfo('Jane'));
 console.log(getEmployeeInfo('Max'));

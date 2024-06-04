@@ -14,79 +14,97 @@ Task 2.
 */
 
 // subtask 1
-const competitorPizza = ['Pepperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'Hawaiian'];
+const competitorPizza = ['Pepperoni', 'Caprichosa', 'Diablo', '4 cheeses', 'hawaiian'];
 const pizzaList = ['Neapolitan', 'Margherita', 'Pepperoni', 'Hawaiian', 'BBQ Chicken', '4 cheeses'];
+const pizzaList2 = ['Pepperoni', 'Diablo', 'Hawaiian'];
+
 
 function getPizzaComparison(myList) {
-	const extraPizza = [];
-
-	for (let i = 0; i < myList.length; i++) {
-		if (!competitorPizza.includes(myList[i])) {
-			extraPizza.push(myList[i]);
-		}
-	}
-
-	if (extraPizza.length === 0) {
-		return null;
+	if (!(Array.isArray(myList))) {
+		return `Something went wrong! Only array type for entered data is valid.`
 	} else {
-		return extraPizza;
+		const extraPizza = [];
+		const competitor = competitorPizza.map(a => a.toLowerCase());
+		const myPizzaList = myList.map(a => a.toLowerCase());
+
+		for (let i = 0; i < myPizzaList.length; i++) {
+			if (!competitor.includes(myPizzaList[i])) {
+				extraPizza.push(myList[i]);
+			}
+		}
+		return extraPizza.length ? extraPizza : null;
 	}
 }
 console.log(getPizzaComparison(pizzaList));        // ['Neapolitan', 'Margherita', 'BBQ Chicken'];
+console.log(getPizzaComparison(pizzaList2));       // null
+console.log(getPizzaComparison('pizzaList'));      // Error message
 
 
 // subtask 2
 const initialString = 'New challenges for new Javascript learners';
 
 function getMaxLengthWord(string) {
-	const array = string.split(' ');
-	const lengthArray = [];
+	if (!(typeof string === 'string')) {
+		return `Something went wrong! Only string type for entered data is valid.`
+	} else {
+		const array = string.split(' ');
+    const result = [];
 
-	for (let el of array) {
-		lengthArray.push(el.length);
-	}
-
-	maxLength = Math.max(...lengthArray);
-	let result = [];
-
-	for (let el of array) {
-		if (el.length === maxLength) {
-			result.push(el);
+		for (const el of array) {
+			if (!result.length) {
+        result.push(el);
+      } else {
+        if (el.length > result[0].length) {
+          result.length = 0;
+          result[0] = el;
+        } else if (el.length === result[0].length) {
+          result.push(el);
+        }
+      }
 		}
+		return `The longest word(s): ${result.join(', ')}.`;
 	}
-	return `The longest word(s): ${result.join(', ')}.`;
 }
 console.log(getMaxLengthWord(initialString));
+console.log(getMaxLengthWord(['new', 'challenges', 'learners']));
 
 
 // subtask 3
 let numbers = [2, 7, 20, 4, 2, 5, 10, 7, 4];
 
 function removeDuplicates(array) {
-	let result = [];
-
-	for (let el of array) {
-		if (array.indexOf(el) === array.lastIndexOf(el)) {
-			result.push(el);
+	if (!(Array.isArray(array))) {
+		return `Something went wrong! Only array type for entered data is valid.`
+	} else {
+		for (const el of array) {
+			if (array.indexOf(el) !== array.lastIndexOf(el)) {
+				array.splice(array.lastIndexOf(el), 1);
+			}
 		}
+		return array;
 	}
-	return result;
 }
 console.log(removeDuplicates(numbers));
+console.log(removeDuplicates(1, 3, 1));
 
 
 // subtask 4
-const initalWord = 'Madam';
+const initialWord = 'Madam';
 
 function isPalindrome(str) {
-	const array = str.toLowerCase().split('');
-	const arrayReversed = array.slice().reverse();
+	if (!(typeof str === 'string')) {
+		return `Something went wrong! Only string type for entered data is valid.`
+	} else {
+		const array = str.toLowerCase().split('');
+		const arrayReversed = array.slice().reverse();
 
-	for (let i = 0; i <= array.length / 2; i++) {
-		if (array[i] !== arrayReversed[i]) {
-			return `\'${str}\' is not a palindrome.`
+		for (let i = 0; i <= array.length / 2; i++) {
+			if (array[i] !== arrayReversed[i]) {
+				return `"${str}" is not a palindrome.`
+			}
 		}
+		return `"${str}" is a palindrome.`
 	}
-	return `\'${str}\' is a palindrome.`
 }
-console.log(isPalindrome(initalWord));
+console.log(isPalindrome(initialWord));
+console.log(isPalindrome(1001));
