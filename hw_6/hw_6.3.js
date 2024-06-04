@@ -11,7 +11,7 @@ Task 3.
 
 // subtask 5
 function countSum(num) {
-	if (!(typeof num === 'number')) {
+	if (typeof num !== 'number') {
 		return `Something went wrong! Only number type for entered data is valid.`
 	} else {
 		const transformedNum = num.toString().split('');
@@ -26,21 +26,29 @@ function countSum(num) {
 	}
 }
 console.log(countSum(292));
+console.log(countSum(8997));
 console.log(countSum('num'));
 
 
 // subtask 6
 function shrinkString(string) {
-	const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-	let result = string.toLowerCase().split('').sort();
+  if (typeof string !== 'string') {
+		return `Something went wrong! Only string type for entered data is valid.`
+	} else {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let result = string.split('');
 
-	while (result[0] === result[1]) {
-	const index = alphabet.indexOf(result[0]);
-	const indexOfNextAlphabet = index + 1 - alphabet.length;
-	result.splice(0, 2, alphabet.at(indexOfNextAlphabet));
-	}
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === result[i + 1]) {
+        const replacedIndex = alphabet.indexOf(result[i]) + 1 - alphabet.length;
+        result.splice(i, 2, alphabet.at(replacedIndex));
 
-	return `Shrinked string is \'${result.toString()}\'.`
+        return shrinkString(result.join(''));
+      }
+    }
+    return `Shrinked string is "${result.join('')}".`
+  }
 }
-console.log(shrinkString('aabcde'));
-console.log(shrinkString('baacdzz'));
+console.log(shrinkString('aabcde'));          // f
+console.log(shrinkString('edaabczz'));        // fa
+console.log(shrinkString(11223));             // Error

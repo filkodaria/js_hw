@@ -21,7 +21,7 @@ const pizzaList2 = ['Pepperoni', 'Diablo', 'Hawaiian'];
 
 function getPizzaComparison(myList) {
 	if (!(Array.isArray(myList))) {
-		return `Something went wrong! Only array type for entered data is valid.`
+		return `Something went wrong! Only array format for entered data is valid.`
 	} else {
 		const extraPizza = [];
 		const competitor = competitorPizza.map(a => a.toLowerCase());
@@ -44,7 +44,7 @@ console.log(getPizzaComparison('pizzaList'));      // Error message
 const initialString = 'New challenges for new Javascript learners';
 
 function getMaxLengthWord(string) {
-	if (!(typeof string === 'string')) {
+	if (typeof string !== 'string') {
 		return `Something went wrong! Only string type for entered data is valid.`
 	} else {
 		const array = string.split(' ');
@@ -74,7 +74,7 @@ let numbers = [2, 7, 20, 4, 2, 5, 10, 7, 4];
 
 function removeDuplicates(array) {
 	if (!(Array.isArray(array))) {
-		return `Something went wrong! Only array type for entered data is valid.`
+		return `Something went wrong! Only array format for entered data is valid.`
 	} else {
 		for (const el of array) {
 			if (array.indexOf(el) !== array.lastIndexOf(el)) {
@@ -92,7 +92,7 @@ console.log(removeDuplicates(1, 3, 1));
 const initialWord = 'Madam';
 
 function isPalindrome(str) {
-	if (!(typeof str === 'string')) {
+	if (typeof str !== 'string') {
 		return `Something went wrong! Only string type for entered data is valid.`
 	} else {
 		const array = str.toLowerCase().split('');
@@ -107,4 +107,5 @@ function isPalindrome(str) {
 	}
 }
 console.log(isPalindrome(initialWord));
+console.log(isPalindrome('live'));
 console.log(isPalindrome(1001));

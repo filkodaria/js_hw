@@ -11,7 +11,7 @@ Task 1.
 */
 
 function getEmployeeInfo(name) {
-	if (!(typeof name === 'string')) {
+	if (typeof name !== 'string') {
 		return `Something went wrong! Only string type for entered data is valid.`
 	} else {
 		const employeeNames = ['Hanna', 'Alex', 'Bill', 'Jane', 'Bob'];
@@ -27,7 +27,7 @@ function getEmployeeInfo(name) {
 		}
 	}
 }
-console.log(getEmployeeInfo(10));
 console.log(getEmployeeInfo('Bill'));
 console.log(getEmployeeInfo('Jane'));
 console.log(getEmployeeInfo('Max'));
+console.log(getEmployeeInfo(10));
