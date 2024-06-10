@@ -10,26 +10,27 @@ const str = 'I am the best AQA ever!';
 function transformToAppearanceTimes(string) {
 	if (typeof string !== 'string') {
 		throw new Error('Something went wrong! Only string type for entered data is valid.');
-	} else {
-		const arr = str.toLowerCase().split('');
-
-		const transformedArray = arr.map((el, ind, arr) => {
-			if (el.charCodeAt(0) >= 97 && el.charCodeAt(0) <= 122) {
-				let counter = 0;
-
-				for (let i = 0; i < arr.length; i++) {
-					if (arr[ind] === arr[i]) {
-						counter++;
-					}
-				}
-				return counter;
-			} else return el;
-		})	
-
-		return transformedArray.join('');
 	}
+	const newArr = str.toLowerCase().split('');
+
+	const transformedArray = newArr.map((el, ind, arr) => {
+    if (el.match(/[a-z]/g)) {
+			let counter = 0;
+
+      arr.forEach(item => {
+        if (item === el) {
+          counter++ ;
+        }
+      })
+			return counter;
+		} else return el;
+	})	
+
+	return transformedArray.join('');
 }
+
 console.log(transformToAppearanceTimes(str));
+console.log(transformToAppearanceTimes(['I', 'am', 'an', 'engineer']));
 
 
 // sabtask 2
@@ -45,15 +46,8 @@ function getPriceInfo(priceTotal, priceAverage) {
 	return `Total price of all items is ${priceTotal}$. Average price of item is ${priceAverage}$.`;
 }
 
-function getTotalPrice(arr) {
-	const sum = arr.reduce((total, value) => total + value, 0);
-	return sum;
-}
-
-function getAveragePrice(arr) {
-	const average = parseInt(getTotalPrice(arr) / arr.length);
-	return average;
-}
+const getTotalPrice = arr => arr.reduce((total, value) => total + value, 0);
+const getAveragePrice = arr => parseInt(getTotalPrice(arr) / arr.length);
 
 console.log(getPriceInfo(getTotalPrice(prices), getAveragePrice(prices)));
 
@@ -66,29 +60,20 @@ console.log(getPriceInfo(getTotalPrice(prices), getAveragePrice(prices)));
 
 const words = ['learn', 'Javascript', 'no', 'sleep', 'night'];
 
-function sortArrayByVowels(arr) {
-	const sortedArray = arr.toSorted((a, b) => a[0] - b[0]);
-	return sortedArray.map(el => el[1]);
+const sortArrayByVowels = arr => arr.sort((a, b) => countVowels(a) - countVowels(b));
+
+const countVowels = str => {
+  let counter = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    if (str[i].match(/[aeiouy]/gi)) {
+      counter++;
+    }
+  }
+  return counter;
 }
 
-function findVowelsAmount(arr) {
-	const vowels = 'aeiouy';
-	
-	const amountVowelsArray = arr.map(el => {
-		let counterForVowels = 0;
-
-		for (let i = 0; i < el.length; i++) {
-			if (vowels.includes(el[i].toLowerCase())) {
-				counterForVowels++;
-			}
-		}
-		return [counterForVowels, el];
-	});
-
-	return amountVowelsArray;
-}
-
-console.log(sortArrayByVowels(findVowelsAmount(words)));
+console.log(sortArrayByVowels(words));
 
 
 // sabtask 4
@@ -101,23 +86,19 @@ console.log(sortArrayByVowels(findVowelsAmount(words)));
   const arr = [[['(']], ')', '(', ')', ')', ['(', ['('], [')']]]
 */
 
-const brackets = [ '(', ')', '(', '(', '(', ')', ')', ')'];
-const brackets2 = [ '(', '(', '(', '(', ')', ')', ')'];
+const brackets = [[['(']], ')', '(', ')', ')', ['(', ['('], [')']]];
+const brackets2 = [[[')', ['(', '(', ')'], ')', ')'], '(']];
 
 function checkBracketsPair(arr) {
-	let newString = arr.join(''); 
+	let flattedArr = arr.flat(Infinity); 
 
-  while (newString.includes('()')) {
-    newString = newString.replace('()', '');
-  }
+  const counter = flattedArr.reduce((total, elem) => {
+		elem === '(' ? total++ : total--;
+		return total;
+	}, 0);
 
-	if (!newString.length) {
-		return 'Each bracket has its pair.' 
-	} else {
-		return 'Not all brackets have their pairs.'
-	}
+	return counter === 0 ? 'Each bracket has its pair.' : 'Not all brackets have their pairs.'
 }
 
 console.log(checkBracketsPair(brackets));
 console.log(checkBracketsPair(brackets2));
-

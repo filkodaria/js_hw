@@ -11,13 +11,11 @@ Task 1.
 function getOnlyNumbers(arrayOnAnyValues) {
 	if (!(Array.isArray(arrayOnAnyValues))) {
 		throw new Error(`Something went wrong! Only array format for entered data is valid.`);
-	} else {
-		const result = arrayOnAnyValues.filter(el => typeof el === 'number' && !isNaN(el));
-		return result; 
 	}
+	const result = arrayOnAnyValues.filter(el => typeof el === 'number' && !isNaN(el));
+	return result; 
 }
 
 const arr = [NaN, 1, true, 5, "hello", undefined, 15.5, {}, []];
 console.log(getOnlyNumbers(arr));
 console.log(getOnlyNumbers('arr'));
-
