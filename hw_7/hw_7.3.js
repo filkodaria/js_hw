@@ -7,16 +7,16 @@
   Решите эту задачу, используя эффективные методы массива.
 */
 
-const numbers = [1, 4, 7, 9, 3, 4, 9, 10, 11, 2, 6, 6, 8, 12]  // 5 is excluded
+const numbers = [1, 4, 7, 9, 3, 4, 9, 10, 11, 2, 6, 6, 8, 12]        // 5 is excluded
 
 function findMissingNumber(arr) {
-	const maxValue = Math.max(...arr);
+	const arrUniqueSorted = Array.from(new Set(arr)).sort((a, b) => a - b);
 
-	for (let i = maxValue; i >= 1; i--) {
-		if (!arr.includes(i)) {
-			return `Excluded number is ${i}.`;
-		}
-	}
+	const uniqueNum = arrUniqueSorted
+	.filter((el, ind, arr) => !arr.includes(el + 1) && el !== arr.at(-1))
+	.map(el => el + 1);
+	
+	return `Excluded number is ${uniqueNum}.`
 }
 
 console.log(findMissingNumber(numbers));
