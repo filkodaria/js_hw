@@ -13,8 +13,8 @@ function findMissingNumber(arr) {
 	const arrUniqueSorted = Array.from(new Set(arr)).sort((a, b) => a - b);
 
 	const uniqueNum = arrUniqueSorted
-	.filter((el, ind, arr) => !arr.includes(el + 1) && el !== arr.at(-1))
-	.map(el => el + 1);
+	.filter((el, ind, arr) => !arr.includes(el - 1) && el !=1)
+	.map(el => el - 1);
 	
 	return `Excluded number is ${uniqueNum}.`
 }
