@@ -262,23 +262,9 @@ moveEmployees(2, 3)
 */
 
 const moveEmployees = (startDepartId, endDepartId) => {
-	let startDepart;
-	let endDepart;
-	enterprises.forEach(comp => {
-		comp.departments.forEach(depart => {
-			if (depart.id === startDepartId) {
-				startDepart = depart;
-			} else if (depart.id === endDepartId) {
-				endDepart = depart;
-			} 
-		})
-		endDepart.employees_count += startDepart.employees_count;
-		startDepart.employees_count -= startDepart.employees_count;
-	})
-
+	getDepartByDepartId(endDepartId).employees_count += getDepartByDepartId(startDepartId).employees_count;
+	getDepartByDepartId(startDepartId).employees_count -= getDepartByDepartId(startDepartId).employees_count;
 }
 
 moveEmployees(2, 4);
 console.log(enterprises[0])
-
-console.log(enterprises);
