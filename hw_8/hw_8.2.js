@@ -75,18 +75,30 @@ const enterprises = [
 Предприятие 3 (нет сотрудников)
 - Отдел аналитики (нет сотрудников)
 */ 
+console.log('--------------- subtask_1 ---------------');
+
+function countCompanyEmployees (depart) {
+	return depart.reduce((total, dep) => total + dep.employees_count, 0);
+} 
+
+
+function addCorrectWordEnding (amount) {
+	if (amount === 1) {
+		return 'сотрудник';
+	} else if (amount >= 2 && amount <= 4) {
+		return 'сотрудника';
+	} else return 'сотрудников';
+}
+
 
 const getEnterpriseInfo = companyArr => {
 	companyArr.forEach(comp => {
-		console.log(`${comp.name} (${countCompanyEmployees(comp.departments)} сотрудников)`);
+		console.log(`${comp.name} (${countCompanyEmployees(comp.departments)} ${addCorrectWordEnding(countCompanyEmployees(comp.departments))})`);
 		comp.departments.forEach(depart => {
-			console.log(`- ${depart.name} (${depart.employees_count} сотрудников)`);
+			console.log(`- ${depart.name} (${depart.employees_count} ${addCorrectWordEnding(depart.employees_count)})`);
 		})
 	});
 }
-
-const countCompanyEmployees = depart => depart.reduce((total, dep) => 
-	total + dep.employees_count, 0);
 
 getEnterpriseInfo(enterprises);
 
@@ -97,37 +109,27 @@ getEnterpriseInfo(enterprises);
 getEnterpriseName(4) // Предприятие 1
 getEnterpriseName("Отдел маркетинга") // Предприятие 2
 */
+console.log('--------------- subtask_2 ---------------');
 
 function getCompanyNameByDepartId(identifier) {
-	let compName; 
+	let compName;
 	enterprises.find(comp => 
-		comp.departments.find(depart => 
-			depart.id === identifier ? compName = comp.name : false))
-	return compName;
+		comp.departments.find(depart => {
+			if (depart.id === identifier || depart.name === identifier) {
+				compName = comp.name;
+				return compName;
+			}
+		})
+	)
+	if (!compName) {
+		throw new Error(`Department with identifier '${identifier}' was not found.`)
+	} else return compName;
 }
 
-
-function getCompanyNameByDepartName(identifier) {
-	let compName; 
-	enterprises.find(comp => 
-		comp.departments.find(depart =>
-			depart.name === identifier ? compName = comp.name : false))
-	return compName;
-}
-
-
-const getCompanyName = identifier => {
-	if (getCompanyNameByDepartId(identifier)) {
-		return `This identifier is valid for ${getCompanyNameByDepartId(identifier)}.`
-	} else if (getCompanyNameByDepartName(identifier)) {
-		return `This identifier is valid for ${getCompanyNameByDepartName(identifier)}.`
-	} else return 'Enter valid data.'
-}
-
-console.log(getCompanyName('Отдел маркетинга'));
-console.log(getCompanyName('Отдел электроники'));
-console.log(getCompanyName(7));
-console.log(getCompanyName(9));
+console.log(getCompanyNameByDepartId('Отдел маркетинга'));
+// console.log(getCompanyNameByDepartId('Отдел электроники'));
+console.log(getCompanyNameByDepartId(7));
+// console.log(getCompanyNameByDepartId(9));
 
 
 /*
@@ -135,6 +137,7 @@ console.log(getCompanyName(9));
 Пример:
 addEnterprise("Название нового предприятия")
 */
+console.log('--------------- subtask_3 ---------------');
 
 function getMaxId(companyArr) {
 	const idArr = [];
@@ -143,13 +146,13 @@ function getMaxId(companyArr) {
 		comp.departments.forEach(depart => idArr.push(depart.id));
 	});
 	const maxId = Math.max(...idArr);
-	return maxId;
+	return maxId + 1;
 }
 
 
 const addNewCompany = companyName => {
 	const newComp = {
-		id: getMaxId(enterprises) + 1,
+		id: getMaxId(enterprises),
 		name: companyName,
 		departments: [],
 	}
@@ -165,21 +168,20 @@ console.log(enterprises);
 Пример:
 addDepartment(1, "Название нового отдела")
 */
+console.log('--------------- subtask_4 ---------------');
 
-function getCompanyByCompanyId(compId) {
-	let compObj; 
-	enterprises.find(comp => comp.id === compId ? compObj = comp : false);
-	return compObj;
+function getCompanyById(compId) {
+	return enterprises.find(comp => comp.id === compId);
 }
 
 
 const addNewDepartment = (compId, departName) => {
 	const newDepart = {
-		id: getMaxId(enterprises) + 1,
+		id: getMaxId(enterprises),
 		name: departName,
 		employees_count: 0,
 	}
-	getCompanyByCompanyId(compId).departments.push(newDepart);
+	getCompanyById(compId).departments.push(newDepart);
 }
 
 addNewDepartment(11, 'Название нового отдела');
@@ -192,10 +194,9 @@ console.log(enterprises[3]);
 Пример:
 editEnterprise(1, "Новое название предприятия")
 */
+console.log('--------------- subtask_5 ---------------');
 
-const editCompanyName = (compId, newCompName) => {
-	getCompanyByCompanyId(compId).name = newCompName;
-}
+const editCompanyName = (compId, newCompName) => getCompanyById(compId).name = newCompName;
 
 editCompanyName(11, 'Предприятие 4');
 console.log(enterprises[3]);
@@ -206,16 +207,26 @@ console.log(enterprises[3]);
 Пример:
 editDepartment(7, "Новое название отдела")
 */
+console.log('--------------- subtask_6 ---------------');
 
-function getDepartByDepartId(departId) {
-	let departObj; 
-	enterprises.find(comp => comp.departments.find(depart => depart.id === departId ? departObj = depart : false));
-	return departObj;
+function getDepartById(departId) {
+	let departObj;
+	enterprises.find(comp => 
+		comp.departments.find(depart => {
+			if (depart.id === departId) {
+				departObj = depart;
+				return departObj;
+			}
+		})
+	)
+	if (!departObj) {
+		throw new Error(`Department with id '${departId}' was not found.`)
+	} else return departObj;
 }
 
 
 const editDepartName = (departId, newDepartName) => {
-	getDepartByDepartId(departId).name = newDepartName;
+	getDepartById(departId).name = newDepartName;
 }
 
 editDepartName(12, 'Финансовый отдел');
@@ -228,10 +239,13 @@ console.log(enterprises[3]);
 Пример:
 deleteEnterprise(1)
 */
+console.log('--------------- subtask_7 ---------------');
 
 const deleteCompanyItem = compId => {
 	const compIndex = enterprises.findIndex(comp => comp.id === compId);
-	compIndex != -1 ? enterprises.splice(compIndex, 1) : false;
+	if (compIndex !== -1) {
+		enterprises.splice(compIndex, 1);
+	} else throw new Error(`Company with id '${compId}' was not found.`)
 }
 
 deleteCompanyItem(5);
@@ -243,12 +257,17 @@ console.log(enterprises);
 Пример:
 deleteDepartment(3)
 */
+console.log('--------------- subtask_8 ---------------');
 
 const deleteDepartItem = departId => {
-	enterprises.forEach(comp => {
-		const departIndex = comp.departments.findIndex(depart => depart.id === departId && depart.employees_count == 0);
-		departIndex != -1 ? comp.departments.splice(departIndex, 1) : false;
+	let departIndex;
+	enterprises.find(comp => {
+		departIndex = comp.departments.findIndex(depart => depart.id === departId && depart.employees_count == 0);
+		if (departIndex !== -1) {
+			return comp.departments.splice(departIndex, 1);
+		}
 	})
+	if (departIndex === -1) throw new Error(`Department with id '${departId}' was not found or it's not empty.`)
 }
 
 deleteDepartItem(12);
@@ -260,10 +279,13 @@ console.log(enterprises[2]);
 Пример:
 moveEmployees(2, 3)
 */
+console.log('--------------- subtask_9 ---------------');
 
 const moveEmployees = (startDepartId, endDepartId) => {
-	getDepartByDepartId(endDepartId).employees_count += getDepartByDepartId(startDepartId).employees_count;
-	getDepartByDepartId(startDepartId).employees_count -= getDepartByDepartId(startDepartId).employees_count;
+	if (getCompanyNameByDepartId(startDepartId) === getCompanyNameByDepartId(endDepartId)) {
+		getDepartById(endDepartId).employees_count += getDepartById(startDepartId).employees_count;
+		getDepartById(startDepartId).employees_count -= getDepartById(startDepartId).employees_count;
+	} else throw new Error(`Please, use this option within the one company.`)
 }
 
 moveEmployees(2, 4);
