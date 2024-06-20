@@ -284,7 +284,7 @@ console.log('--------------- subtask_9 ---------------');
 const moveEmployees = (startDepartId, endDepartId) => {
 	if (getCompanyNameByDepartId(startDepartId) === getCompanyNameByDepartId(endDepartId)) {
 		getDepartById(endDepartId).employees_count += getDepartById(startDepartId).employees_count;
-		getDepartById(startDepartId).employees_count -= getDepartById(startDepartId).employees_count;
+		getDepartById(startDepartId).employees_count = 0;
 	} else throw new Error(`Please, use this option within the one company.`)
 }
 
