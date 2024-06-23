@@ -48,11 +48,11 @@ class Animal {
 }
 
 const goldenRetriever = new Animal('dog', 'white', '30 kg', '75 cm', 'Scotland');
-// console.log(goldenRetriever.getInfo());
-// console.log(goldenRetriever);
+console.log(goldenRetriever.getInfo());
+console.log(goldenRetriever);
 
 goldenRetriever.color = 'black';
-// console.log(goldenRetriever.getInfo());
+console.log(goldenRetriever.getInfo());
 
 // goldenRetriever.color = 'sandy';
 

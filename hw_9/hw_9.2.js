@@ -101,12 +101,13 @@ class Worker {
 */
 
 class Zoo {
+	workers = [];
+	animals = [];
+
 	constructor(address, title, ticketPrice) {
 		this.address = address;
 		this.title = title;
 		this.ticketPrice = ticketPrice;
-		this.workers = [];
-		this.animals = [];
 	}
 
 	get address() {
@@ -145,11 +146,9 @@ class Zoo {
 	}
 
 	removeWorker(workerSurname, workerPhoneNumber) {
-		this.workers.find((workerObj, index) => {
-			if (workerObj.lastName === workerSurname && workerObj.phone == workerPhoneNumber) {
-				return this.workers.splice(index, 1);
-			}
-		})
+		const index = this.workers.findIndex(workerObj => 
+			workerObj.lastName === workerSurname && workerObj.phone == workerPhoneNumber);
+		return this.workers.splice(index, 1);
 	}
 
 	removeAnimal(animalType, animalColor) {
