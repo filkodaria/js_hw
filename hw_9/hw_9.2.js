@@ -148,7 +148,7 @@ class Zoo {
 	removeWorker(workerSurname, workerPhoneNumber) {
 		const index = this.workers.findIndex(workerObj => 
 			workerObj.lastName === workerSurname && workerObj.phone == workerPhoneNumber);
-		return this.workers.splice(index, 1);
+		this.workers.splice(index, 1);
 	}
 
 	removeAnimal(animalType, animalColor) {
