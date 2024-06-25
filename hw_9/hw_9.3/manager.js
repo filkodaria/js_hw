@@ -9,10 +9,7 @@ class Manager extends ITSpecialist {
 	checkIsScrumMaster() {
 		this.isScrumMaster ? `Manager is Scum Master.` : `Manager isn't Scum Master.` 
 	}
-
-	getSpesialization() {
-		return 'Manager';
-	}
+	
 }
 
 module.exports = Manager;

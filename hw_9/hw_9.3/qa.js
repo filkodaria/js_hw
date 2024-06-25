@@ -10,9 +10,6 @@ class QA extends ITSpecialist {
 		this.isAQA ? `Tester is AQA.` : `Tester is manual.` 
 	}
 
-	getSpesialization() {
-		return 'QA';
-	}
 }
 
 module.exports = QA;

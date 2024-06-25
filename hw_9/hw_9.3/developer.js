@@ -6,13 +6,10 @@ class Developer extends ITSpecialist {
 		this.isWritingUnitTests = isWritingUnitTests;
 	}
 
-	checkIsAQA() {
+	checkIsWritingUnitTests() {
 		this.isWritingUnitTests ? `Dev writes Unit Tests.` : `Dev isn't able to write Unit Tests.` 
 	}
-
-	getSpesialization() {
-		return 'Developer';
-	}
+	
 }
 
 module.exports = Developer;

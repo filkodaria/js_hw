@@ -11,6 +11,15 @@ class ITSpecialist {
 		this.#salary = salary;
 	}
 
+	get age() {
+		return this.#age;
+	}
+
+	set age(value) {
+		if (typeof value !== 'number') throw new Error(`It passes only 'number' type for age field.`);
+		this.#age = value;
+	}
+
 	get country() {
 		return this._country;
 	}
@@ -18,6 +27,19 @@ class ITSpecialist {
 	set country(value) {
 		if (typeof value !== 'string') throw new Error(`It passes only 'string' type for country field.`);
 		this._country = value;
+	}
+
+	get salary() {
+		return this.#salary;
+	}
+
+	set salary(value) {
+		if (typeof value !== 'number') throw new Error(`It passes only 'number' type for salary field.`);
+		this.#salary = value;
+	}
+
+	getName() {
+		return this.name;
 	}
 
 	getGeneralInfo() {
@@ -31,6 +53,11 @@ class ITSpecialist {
 	getSalary() {
 		return this.#salary;
 	}
+
+	getSpecialization() {
+		return this.constructor.name;
+	}
+
 }
 
 module.exports = ITSpecialist;

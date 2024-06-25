@@ -60,21 +60,45 @@ class Team {
 	}
 
 	removeTeammate(name, jobTitle) {
-		const index = this.teammates.findIndex(employee => employee.name === name && employee.getSpesialization() === jobTitle);
+		const index = this.teammates.findIndex(employee => employee.name === name && employee.getSpecialization() === jobTitle);
 		if (index === -1) throw new Error(`Employee not found.`);
 		this.teammates.splice(index, 1);
 	}
 
-	editTeammate() {
+	editTeammate(name, jobTitle, newValueObj) {
+		const teammate = this.teammates.find(employee => employee.getName() === name && employee.getSpecialization() === jobTitle);
 
+		if (!teammate) {
+			throw new Error(`Employee not found: ${name}, ${jobTitle}.`)
+		} else {
+			Object.entries(newValueObj).forEach(elem => {
+				const [key, value] = elem;
+				teammate[key] = value;
+			})		
+		}
 	}
 
 	showAllTeammates() {
 		return this.teammates;
 	}
 
+	showTeammatePrivateInfo(name, jobTitle) {
+		const teammate = this.teammates.find(employee => employee.getName() === name && employee.getSpecialization() === jobTitle);
+
+		if (!teammate) {
+			throw new Error('Employee not found:', name)
+		} else {
+			return {
+				name: teammate.getName(),
+				jobTitle: teammate.getSpecialization(),
+				age: teammate.getAge(),
+				salary: teammate.getSalary(),
+			}		
+		}
+	}
+
 	showTeammatesBySpecialization(jobTitle) {
-		return this.teammates.filter(employee => employee.getSpesialization() === jobTitle);
+		return this.teammates.filter(employee => employee.getSpecialization() === jobTitle);
 	}
 
 	// Tasks methods
@@ -103,12 +127,22 @@ class Team {
 
 		const index = this.tasks.findIndex(task => task.getId() === id && task.getFeatureName().match(regex));
 		if (index === -1) throw new Error(`Task not found.`);
-		
+
 		this.tasks.splice(index, 1);
 	}
 
-	editTask() {
+	editTask(id, keyWord, newValueObj) {		
+		const regex = new RegExp(`${keyWord}`, 'gi');
+		const task = this.tasks.find(task => task.getId() === id && task.getFeatureName().match(regex));
 
+		if (!task) {
+			throw new Error(`Task not found: id - ${id}, keyword - ${keyWord}.`)
+		} else {
+			Object.entries(newValueObj).forEach(elem => {
+				const [key, value] = elem;
+				task[key] = value;
+			})		
+		}
 	}
 
 	showAllTasks() {
@@ -125,6 +159,7 @@ class Team {
 	showTasksByUserStory(userStoryNumber) {
 		return this.tasks.filter(task => task.getUserStoryNumber() === userStoryNumber);
 	}
+
 }
 
 module.exports = Team;
