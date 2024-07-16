@@ -15,7 +15,7 @@
 12. Создайте объект с типом ItEmployee
 */
 
-interface IItEmployee {
+export interface IItEmployee {
 	name: string;
 	surname: string;
 	readonly salary: number;
@@ -27,14 +27,14 @@ interface IItEmployee {
 
 type TGrade = 'junior' | 'middle' | 'senior' | 'lead';
 
-enum OCCUPATION {
+export enum OCCUPATION {
 	PM = 'project manager',
 	DEVELOPER = 'developer',
 	QA = 'QA engineer',
 	DESIGNER = 'designer',
 }
 
-interface IAddress {
+export interface IAddress {
 	country: string;
 	street: string;
 	building: number;
@@ -57,4 +57,4 @@ tester.address = {
 	appartment: 3,
 };
 
-console.log(tester);
+// console.log(tester);
