@@ -23,16 +23,16 @@ type QaKeys = keyof typeof QA;
 type UserType = typeof QA;
 
 // 5. Создайте тип, в котором все поля интерфейса IEmployee будут необязательными
-type partialFieldsOfInterface = Partial<IEmployee>;
+type PartialFieldsOfInterface = Partial<IEmployee>;
 
 // 6. Создайте тип, который будет содержать поля name и salary из интерфейса IEmployee
-type pickFieldsOfInterface = Pick<IEmployee, 'name' | 'salary'>;
+type PickFieldsOfInterface = Pick<IEmployee, 'name' | 'salary'>;
 
 // 7. Создайте тип, который будет держать все поля из интерфейса IEmployee, кроме isManager
-type omitFieldsOfInterface = Omit<IEmployee, 'isManager'>;
+type OmitFieldsOfInterface = Omit<IEmployee, 'isManager'>;
 
 // 8. Создайте тип, который будет содержать все поля из интерфейса IEmployee и сделает их неизменяемыми (readonly)
-type readonlyFieldsOfInterface = Readonly<IEmployee>;
+type ReadonlyFieldsOfInterface = Readonly<IEmployee>;
 
 // 9. Создайте тип, для массива объектов, где в ключах могут быть строки, в значениях number, string или boolean
-type arrayOfObjects = Record<string, number | string | boolean>[];
+type ArrayOfObjects = Record<string, number | string | boolean>[];
